@@ -7,12 +7,10 @@ todos= ["1. Camberos Galindo Miguel Samahel",
         "4. ",
         "5. "]
 
+# =========================================
 
-# =============================================
+print(" ARMIENTA SUÁREZ BRENDA SYAN ")
 
+# CHERRY
 
-print(" Armienta Suárez Brenda Syan")
-print(todos)
-
-
-#==============================================
+# =========================================
