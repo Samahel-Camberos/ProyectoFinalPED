@@ -55,7 +55,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/PROGA - TRAB FINAL/menu_dasboard_syan.py",
+    "last_opened_file_path": "D:/PROGA - TRAB FINAL/scrapping_amazon-syan.py",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   },
   "keyToStringList": {
@@ -128,7 +128,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717990849541</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Definitivo">
+      <option name="closed" value="true" />
+      <created>1717990921692</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1717990921692</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Definitivo">
+      <option name="closed" value="true" />
+      <created>1717991015810</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1717991015810</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
