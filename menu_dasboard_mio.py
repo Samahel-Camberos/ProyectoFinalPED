@@ -37,7 +37,7 @@ app.layout = html.Div([dcc.Location(id="url"), sidebar, content])
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def render_page_content(pathname):
     if pathname == "/":
-        return html.P("This is the content of the home page!")
+        return d951.infoinicio()
     elif pathname == "/total-opiniones":
         return d951.total_opiniones()
     elif pathname == "/ventas-genero":
@@ -61,3 +61,4 @@ d951.register_callbacks(app)
 
 if __name__ == "__main__":
     app.run_server(debug=True)
+
