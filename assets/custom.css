@@ -1,0 +1,31 @@
+/* custom.css */
+
+.SIDEBAR_STYLE {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 18rem;
+    padding: 2rem 1rem;
+    background-color: black;
+}
+
+.CONTENT_STYLE {
+    margin-left: 20rem;
+    margin-right: 2rem;
+    padding: 2rem 1rem;
+}
+
+.nav-link {
+    color:#6D6D6D;
+}
+
+.nav-link.active {
+    background-color:#6D6D6D;
+    color: white !important;
+}
+
+.P{
+   color:#6D6D6D
+   center
+}
