@@ -20,12 +20,16 @@
     color:#6D6D6D;
 }
 
-.nav-link.active {
-    background-color:#6D6D6D;
-    color: white !important;
+
+
+
+.SIDEBAR_STYLE .display-5 {
+    font-weight: bold;
+    text-align: center;
 }
 
-.P{
-   color:#6D6D6D
-   center
+.nav-link.active {
+    background-color: #007bff !important;
+    color: white !important;
+     font-weight: bold;
 }
