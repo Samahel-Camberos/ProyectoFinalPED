@@ -1,26 +1,27 @@
-import pandas as pd
 import dash
 import dash_bootstrap_components as dbc
-import graficosprueba1 as d951
 from dash import Input, Output, dcc, html
+import graficosprueba1 as d951
 
-app = dash.Dash(external_stylesheets=[dbc.themes.DARKLY], suppress_callback_exceptions=True)
-app.head = [html.Link(rel='stylesheet', href='./custom.css')]
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY], suppress_callback_exceptions=True)
+
 
 sidebar = html.Div(
     [
-        html.H1("Stocks Semanales", className="display-5"),
+        html.H1("Proyecto Final", className="display-5"),
         html.Hr(),
         html.P(
-            "A simple sidebar layout with navigation links", className="lead"
+            "Menu de graficos obtenidos", className="lead"
         ),
         dbc.Nav(
             [
-                dbc.NavLink("Home", href="/", active="exact"),
-                dbc.NavLink("Dashboard 1", href="/page-1", active="exact"),
-                dbc.NavLink("Page 2", href="/page-2", active="exact"),
-                dbc.NavLink("Dashboard 3", href="/db3", active="exact"),
-                dbc.NavLink("Github", href="https://github.com/", target="_blank", active="exact")
+                dbc.NavLink("Inicio", href="/", active="exact"),
+                dbc.NavLink("Total Opiniones", href="/total-opiniones", active="exact"),
+                dbc.NavLink("Ventas por Género", href="/ventas-genero", active="exact"),
+                dbc.NavLink("Productos por Género", href="/productos-genero", active="exact"),
+                dbc.NavLink("Promedio Calificaciones", href="/promedio-calificaciones", active="exact"),
+                dbc.NavLink("Relación Precio-Calificación", href="/relacion-precio-calificacion", active="exact"),
+                dbc.NavLink("Github", href="https://github.com/Samahel-Camberos/ProyectoFinalPED/watchers", target="_blank", active="exact")
             ],
             vertical=True,
             pills=True
@@ -33,19 +34,20 @@ content = html.Div(id="page-content", className="CONTENT_STYLE")
 
 app.layout = html.Div([dcc.Location(id="url"), sidebar, content])
 
-
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def render_page_content(pathname):
     if pathname == "/":
         return html.P("This is the content of the home page!")
-    elif pathname == "/page-1":
-        return html.P("This is the content of page 1. Yay!")
-    elif pathname == "/page-2":
-        return html.P("Oh cool, this is page 2!")
-    elif pathname =="/db3":
-        data = pd.read_csv("dataset/amazon_12.csv")
-        return d951.dashboard(data)
-    # If the user tries to reach a different page, return a 404 message
+    elif pathname == "/total-opiniones":
+        return d951.total_opiniones()
+    elif pathname == "/ventas-genero":
+        return d951.ventas_genero()
+    elif pathname == "/productos-genero":
+        return d951.productos_genero()
+    elif pathname == "/promedio-calificaciones":
+        return d951.promedio_calificaciones()
+    elif pathname == "/relacion-precio-calificacion":
+        return d951.relacion_precio_calificacion()
     return html.Div(
         [
             html.H1("404: Not found", className="text-danger"),
@@ -54,6 +56,7 @@ def render_page_content(pathname):
         ],
         className="p-3 bg-light rounded-3",
     )
+d951.register_callbacks(app)
 
 
 if __name__ == "__main__":
