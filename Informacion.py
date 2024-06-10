@@ -2,7 +2,7 @@
 
 
 todos= ["1. Camberos Galindo Miguel Samahel",
-        "2. ",
+        "2. ARELLANO REYES DAVID  ",
         "3. ",
         "4. ",
         "5. "]
@@ -14,3 +14,5 @@ print(" ARMIENTA SUÁREZ BRENDA SYAN ")
 # CHERRY
 
 # =========================================
+
+print("ARELLANO REYES DAVID ALFONZO")
