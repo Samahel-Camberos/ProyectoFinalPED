@@ -1,7 +1,7 @@
 import dash
 import dash_bootstrap_components as dbc
 from dash import Input, Output, dcc, html
-import graficosprueba1 as d951
+import graficosprueba1 as d952
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.DARKLY], suppress_callback_exceptions=True)
 
@@ -37,17 +37,17 @@ app.layout = html.Div([dcc.Location(id="url"), sidebar, content])
 @app.callback(Output("page-content", "children"), [Input("url", "pathname")])
 def render_page_content(pathname):
     if pathname == "/":
-        return d951.infoinicio()
+        return d952.infoinicio()
     elif pathname == "/total-opiniones":
-        return d951.total_opiniones()
+        return d952.total_opiniones()
     elif pathname == "/ventas-genero":
-        return d951.ventas_genero()
+        return d952.ventas_genero()
     elif pathname == "/productos-genero":
-        return d951.productos_genero()
+        return d952.productos_genero()
     elif pathname == "/promedio-calificaciones":
-        return d951.promedio_calificaciones()
+        return d952.promedio_calificaciones()
     elif pathname == "/relacion-precio-calificacion":
-        return d951.relacion_precio_calificacion()
+        return d952.relacion_precio_calificacion()
     return html.Div(
         [
             html.H1("404: Not found", className="text-danger"),
@@ -56,7 +56,7 @@ def render_page_content(pathname):
         ],
         className="p-3 bg-light rounded-3",
     )
-d951.register_callbacks(app)
+d952.register_callbacks(app)
 
 
 if __name__ == "__main__":
