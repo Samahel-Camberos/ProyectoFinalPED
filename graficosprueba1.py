@@ -204,7 +204,7 @@ def register_callbacks(app):
         Output("figVentasGenero", "figure"),
         Input("ddlCompany", "value")
     )
-        def update_ventas_genero(company):
+        def update_ventas_genero(company):" Este codigo lo modifique pare nos diera los valores de la columna precio de menor a mayor"
         data1 = load_data()
         data_filtered = data1[data1['paguina web'].str.lower() == company.lower()].sort_values(by='precios')
         fig = px.bar(data_filtered, x="genero", y="precios", title=f"Ventas {company}")
