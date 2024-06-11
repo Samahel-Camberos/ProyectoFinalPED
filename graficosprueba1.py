@@ -5,7 +5,7 @@ from dash import dcc, html, Input, Output, dash_table, Dash
 
 
 def load_data():
-    return pd.read_csv("datasets/concatenado.csv")
+    return pd.read_csv("dataset/concatenado.csv")
 
 
 def infoinicio():
@@ -52,20 +52,19 @@ def infoinicio():
 
 def total_opiniones():
     data1 = load_data()
-    total_opiniones_por_pagina = data1.groupby("paguina web")["opiniones"].sum().reset_index()
-    total_opiniones_por_pagina = total_opiniones_por_pagina.sort_values(by='opiniones', ascending=True)
-    fig = px.bar(total_opiniones_por_pagina, x="paguina web", y="opiniones",
-                 title="<b>Total de Opiniones por Página Web </b>",
-                 color="paguina web", barmode="group")
-
-    fig.update_layout(
-        paper_bgcolor="black",
-        plot_bgcolor="black",
-        font_color="white",
-        title_font_color="white",
-        title_x=0.5
-    )
-    return dcc.Graph(id="total_opiniones", figure=fig)
+    return html.Div([
+        dcc.Dropdown(
+            id="ddlTotalOpiniones",
+            options=[{"label": page, "value": page} for page in data1["paguina web"].unique()],
+            value=data1["paguina web"].unique()[0],
+            style={
+                "backgroundColor": "black",
+                "color": "Blue",
+                "border": "1px solid blue"
+            }
+        ),
+        dcc.Graph(id="total_opiniones")
+    ])
 
 
 def promedio_calificaciones():
@@ -87,17 +86,19 @@ def promedio_calificaciones():
 
 def distribucion_calificaciones():
     data1 = load_data()
-    fig = px.histogram(data1, x="calificasion", nbins=20,
-                       title="<b>Distribución de Calificaciones</b>",
-                       labels={"calificasion": "Calificación"})
-    fig.update_layout(
-        paper_bgcolor="black",
-        plot_bgcolor="black",
-        font_color="white",
-        title_font_color="white",
-        title_x=0.5
-    )
-    return dcc.Graph(id="distribucion_calificaciones", figure=fig)
+    return html.Div([
+        dcc.Dropdown(
+            id="ddlPageDistribution",
+            options=[{"label": page, "value": page} for page in data1["paguina web"].unique()],
+            value=data1["paguina web"].unique()[0],
+            style={
+                "backgroundColor": "black",
+                "color": "Blue",
+                "border": "1px solid blue"
+            }
+        ),
+        dcc.Graph(id="distribucion_calificaciones")
+    ])
 
 
 def vista_dataframe():
@@ -323,6 +324,45 @@ def register_callbacks(app):
         fig = px.bar(precios_por_pagina, x="paguina web", y="precios",
                      title=f"<b>Precios Promedio por Página Web ({page})</b>",
                      labels={"paguina web": "Página Web", "precios": "Precio Promedio"})
+        fig.update_layout(
+            paper_bgcolor="black",
+            plot_bgcolor="black",
+            font_color="white",
+            title_font_color="white",
+            title_x=0.5
+        )
+        return fig
+
+    @app.callback(
+        Output("total_opiniones", "figure"),
+        Input("ddlTotalOpiniones", "value")
+    )
+    def update_total_opiniones(page):
+        data1 = load_data()
+        total_opiniones_por_pagina = data1[data1['paguina web'] == page].groupby("paguina web")["opiniones"].sum().reset_index()
+        total_opiniones_por_pagina = total_opiniones_por_pagina.sort_values(by='opiniones', ascending=True)
+        fig = px.bar(total_opiniones_por_pagina, x="paguina web", y="opiniones",
+                     title=f"<b>Total de Opiniones por Página Web ({page})</b>",
+                     color="paguina web", barmode="group")
+        fig.update_layout(
+            paper_bgcolor="black",
+            plot_bgcolor="black",
+            font_color="white",
+            title_font_color="white",
+            title_x=0.5
+        )
+        return fig
+
+    @app.callback(
+        Output("distribucion_calificaciones", "figure"),
+        Input("ddlPageDistribution", "value")
+    )
+    def update_distribucion_calificaciones(page):
+        data1 = load_data()
+        data_filtered = data1[data1['paguina web'] == page]
+        fig = px.histogram(data_filtered, x="calificasion", nbins=20,
+                           title=f"<b>Distribución de Calificaciones ({page})</b>",
+                           labels={"calificasion": "Calificación"})
         fig.update_layout(
             paper_bgcolor="black",
             plot_bgcolor="black",
